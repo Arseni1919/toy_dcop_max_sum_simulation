@@ -13,6 +13,12 @@ print(max(stats.items(), key=operator.itemgetter(1))[0], max(stats.items(), key=
 #     print(order)
 #     print(i)
 
-# list_of_domains = [[1,3,4], [2,3,5], [3,4,5]]
-# for i in itertools.product(*list_of_domains):
-#     print(i)
+list_of_domains = [[10,30,40], [-2,-3,-5], [3,4,5]]
+for i in itertools.product(*list_of_domains):
+    print(i)
+
+# ccc = None
+# if ccc:
+#     print('1')
+# else:
+#     print(2)
