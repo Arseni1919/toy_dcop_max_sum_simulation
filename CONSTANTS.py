@@ -12,7 +12,7 @@ import pickle
 from pprint import pprint
 from table_ploter import TablePlotter
 
-ITERATIONS = 40
+ITERATIONS = 30
 # A, B, C, D = 0.76, 0.86, 1.29, 1.14
 # A, B, C, D = 0, 2, 2.05, 0
 A, B, C, D = 1.98, 1.82, 2.73, 0.97
@@ -27,5 +27,5 @@ FLATTEN = True
 file_name = "last_weights.txt"
 # LOAD_PREVIOUS_WEIGHTS = True
 LOAD_PREVIOUS_WEIGHTS = False
-# SAVE_WEIGHTS = True
-SAVE_WEIGHTS = False
+SAVE_WEIGHTS = True
+# SAVE_WEIGHTS = False

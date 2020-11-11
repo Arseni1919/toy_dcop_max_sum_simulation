@@ -2,10 +2,11 @@ from funcs import *
 
 
 class FunctionNode:
-    def __init__(self, name, func, num):
+    def __init__(self, name, func, num, common: str = ''):
         self.name = name
         self.func = func
         self.num = num
+        self.common = common
         self.neighbours = []
         self.message_box = {}
         if LOAD_PREVIOUS_WEIGHTS:

@@ -13,29 +13,22 @@ def create_func_target(cells_near_me):
     def func_target(self, combination, order_of_nei):
         count = 0
         domain_choice_of_var = combination[0]
-        # if domain_choice_of_var in cells_near_me:
-        # others = combination[1:]
         others = combination
-        # if len(set(others)) < len(others):
-        #     return 0
         for i in others:
             if i in cells_near_me:
                 count += 1
         if count == 0:
             return 0
         return max(0, min(REQ, CRED * count))
-        # return 0
 
     return func_target
 
 
 def func_cell(self, combination, order_of_nei):
-    counter = 0
-
     # if there are neighbours to the cell
     # if len(order_of_nei) <= 1:
     #     return 0
-
+    counter = 0
     # if the cell itself chosen by more than one robot
     for item_and_how_many_of_it in collections.Counter(combination).items():
         # looking only on one item and it th cell itself
@@ -48,18 +41,8 @@ def func_cell(self, combination, order_of_nei):
     # if the cell is even inside the combination
     if self.num in combination:
         i = combination.index(self.num)
-
-        # aaa = order_of_nei[i].rund / 10 * (self.num+100)
-        # aaa = order_of_nei[i].rund * (self.num/order_of_nei[i].num + self.rund) / 10
-        # val = round(order_of_nei[i].rund * (self.rund) * 10, 2)  # --> works
         val = calc_weight(self, order_of_nei[i])
         return val
-        # return order_of_nei[i].rund / 10 * (self.num + 1)
-
-        # return order_of_nei[i].rund / 10 * (self.num + 2)
-        # return order_of_nei[i].num / 10 * (self.num + 1)
-        # return order_of_nei[i].num / 10 * (self.num + order_of_nei[i].rund)
-
     return 0
 
 
@@ -325,6 +308,13 @@ def graph_choice_list(choice_list, ITERATIONS):
 
 
 def calc_weight(cell, robot):
+    # return order_of_nei[i].rund / 10 * (self.num + 1)
+    # return order_of_nei[i].rund / 10 * (self.num + 2)
+    # return order_of_nei[i].num / 10 * (self.num + 1)
+    # return order_of_nei[i].num / 10 * (self.num + order_of_nei[i].rund)
+    # aaa = order_of_nei[i].rund / 10 * (self.num+100)
+    # aaa = order_of_nei[i].rund * (self.num/order_of_nei[i].num + self.rund) / 10
+    # val = round(order_of_nei[i].rund * (self.rund) * 10, 2)  # --> works
     return round(cell.rund * robot.rund * 10, 2)
 
 
@@ -352,10 +342,10 @@ def print_assignment_costs(all_agents):
             comb_vs_val.append((max_comb, val))
             # print(f'{comb}: \t{val:.2f}')
 
-    for comb_vs_val_i in comb_vs_val:
-        if comb_vs_val_i[1] == max_val:
-            print(f'(max) -> {comb_vs_val_i[0]}: \t{comb_vs_val_i[1]:.2f}')
-    # print(f'(max) -> {max_comb}: \t{max_val:.2f}')
+    # for comb_vs_val_i in comb_vs_val:
+    #     if comb_vs_val_i[1] == max_val:
+    #         print(f'(max) -> {comb_vs_val_i[0]}: \t{comb_vs_val_i[1]:.2f}')
+    print(f'(max) -> {max_comb}: \t{max_val:.2f}')
 
 
 def extend_difference_lists(all_agents,
@@ -517,4 +507,15 @@ def load_weight_of(agent_name: str, file_name: str):
 def get_dict_of_weights(file_name: str):
     with open(file_name, 'rb') as handle:
         return pickle.load(handle)
+
+
+def reassign_common_weights(all_agents):
+    for agent in all_agents:
+        if 'cell' in agent.name:
+            if agent.common != '':
+                for common_agent in all_agents:
+                    if common_agent.name == agent.common:
+                        agent.rund = common_agent.rund
+                # agent.rund = random.choice([0.01,0.02,0.03])
+
 

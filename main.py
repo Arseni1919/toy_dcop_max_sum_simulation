@@ -12,10 +12,12 @@ def main():
     # scenario_func = scenario_3_6  # !
     # scenario_func = scenario_3_7  # !
     # scenario_func = scenario_3_20  # !
-    scenario_func = scenario_3_21  # !
+    # scenario_func = scenario_3_20_1  # !
+    # scenario_func = scenario_3_21  # !
     # scenario_func = scenario_3_21_1  # !
     # scenario_func = scenario_3_22  # !
-    # scenario_func = scenario_4_1  # !
+    scenario_func = scenario_4_1  # !
+    # scenario_func = scenario_4_1_1
     # scenario_func = scenario_4_3  # !
     # scenario_func = scenario_4_6
     # scenario_func = scenario_4_7
@@ -26,6 +28,7 @@ def main():
     # scenario_func = scenario_4_17
 
     all_agents = scenario_func()
+    # reassign_common_weights(all_agents)
     print(scenario_func.__name__)
     DIFFERENCE_ROBOT_1 = []
     DIFFERENCE_ROBOT_2 = []
