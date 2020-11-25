@@ -11,6 +11,7 @@ def init_message_boxes(agents):
 
 def create_func_target(cells_near_me):
     def func_target(self, combination, order_of_nei):
+        self.cells_near_me = cells_near_me
         count = 0
         domain_choice_of_var = combination[0]
         others = combination
@@ -24,7 +25,12 @@ def create_func_target(cells_near_me):
     return func_target
 
 
+def func_cell_zero(self, combination, order_of_nei):
+    return 0
+
+
 def func_cell(self, combination, order_of_nei):
+
     # if there are neighbours to the cell
     # if len(order_of_nei) <= 1:
     #     return 0
@@ -253,7 +259,7 @@ def print_choices(all_agents, iteration):
             print(colored(a.name, 'green'), end=' ')
             choose_str = 'chooses one of' if len(cells_with_highest_value) > 1 else 'chooses'
             print(f'{choose_str}: {cells_with_highest_value}', end=' ')
-            print(f'with the highest value: {max_value}')
+            print(f'with the highest value: {max_value:.2f}')
             assignments.extend(cells_with_highest_value)
     # print_all_pos_sum_weights(all_agents, iteration)
     return len(assignments) > len(set(assignments))
@@ -315,27 +321,38 @@ def calc_weight(cell, robot):
     # aaa = order_of_nei[i].rund / 10 * (self.num+100)
     # aaa = order_of_nei[i].rund * (self.num/order_of_nei[i].num + self.rund) / 10
     # val = round(order_of_nei[i].rund * (self.rund) * 10, 2)  # --> works
+
     return round(cell.rund * robot.rund * 10, 2)
 
 
 def print_assignment_costs(all_agents):
     list_of_domains = []
     list_of_robots = []
+    list_of_targets = []
 
     for agent in all_agents:
         if 'robot' in agent.name:
             list_of_robots.append(agent)
             list_of_domains.append(agent.domain)
+        if 'targ' in agent.name:
+            list_of_targets.append(agent)
 
     max_val, max_comb = 0, []
     comb_vs_val = []
     for comb in itertools.product(*list_of_domains):
         # each one peaks one cell
         if len(set(comb)) == len(comb):
+        # if True:
             val = 0
+            # the value given by cells
             for indx, robot in enumerate(list_of_robots):
                 val += calc_weight(robot.get_neighbour(comb[indx]), robot)
                 # val += round(robot.get_neighbour(comb[indx]).rund * robot.rund * 10, 2)
+            # the value given by target
+            for target in list_of_targets:
+                for cell_near_target in target.cells_near_me:
+                    if cell_near_target in comb:
+                        val += CRED
             if val > max_val:
                 max_val = val
                 max_comb = comb

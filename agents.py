@@ -49,6 +49,7 @@ class FunctionNode:
             message[i[0]] = max(message[i[0]],
                                 (self.func(self, i, order_of_nei) +
                                  self._prev_iter_brings(i, order_of_nei, iteration)))
+            # print(f'{self.name}: {i} = {self.func(self, i, order_of_nei)}')
         if FLATTEN or 'tar' in self.name:
             flatten_message(message)
         var_node.message_box[iteration][self.name] = message

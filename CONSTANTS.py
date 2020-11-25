@@ -12,14 +12,15 @@ import pickle
 from pprint import pprint
 from table_ploter import TablePlotter
 
-ITERATIONS = 30
+ITERATIONS = 40
 # A, B, C, D = 0.76, 0.86, 1.29, 1.14
 # A, B, C, D = 0, 2, 2.05, 0
-A, B, C, D = 1.98, 1.82, 2.73, 0.97
+A, B, C, D = 0.1, 0.9, 0.87, 0.05
 MINUS_INF = -500000
 REQ = 100
 CRED = 30
 RANDOM_FUNCS = True
+# RANDOM_FUNCS = False
 from_c_to_r = (2, 1)
 
 # FLATTEN = False

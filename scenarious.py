@@ -89,6 +89,29 @@ def scenario_3_20():
     return [cell1, cell2, cell3, robot1, robot2, robot3]
 
 
+def scenario_3_clika():
+    # print(scenario_4.__name__)
+    # init
+    cell1 = FunctionNode('cell1', func_cell, num=1)
+    cell2 = FunctionNode('cell2', func_cell, num=2)
+    cell3 = FunctionNode('cell3', func_cell, num=3)
+
+    robot1 = VariableNode('robot1', domain=[1, 2, 3])
+    robot2 = VariableNode('robot2', domain=[1, 2, 3])
+    # robot3 = VariableNode('robot3', domain=[1, 2, 3])
+
+    # neighbours
+    cell1.neighbours = [robot1, robot2]#, robot3]
+    cell2.neighbours = [robot1, robot2]#, robot3]
+    cell3.neighbours = [robot1, robot2]#, robot3]
+
+    robot1.neighbours = [cell3, cell2, cell1,]
+    robot2.neighbours = [cell3, cell2, cell1,]
+    # robot3.neighbours = [cell3, cell2, cell1,]
+    robot1.rund = 0
+
+    return [cell1, cell2, cell3, robot1, robot2]#, robot3]
+
 def scenario_3_20_1():
     # print(scenario_4.__name__)
     # init
@@ -435,6 +458,39 @@ def scenario_4_20():
     robot2.neighbours = [cell9, cell3, target1, target2]
 
     return [target1, target2, cell3, cell8, cell9, robot1, robot2]
+
+
+def scenario_4_21():
+    # init
+    cell1 = FunctionNode('cell1', func_cell, num=1)
+    cell2 = FunctionNode('cell2', func_cell, num=2)
+    cell3 = FunctionNode('cell3', func_cell, num=3)
+    cell4 = FunctionNode('cell4', func_cell, num=4)
+    cell5 = FunctionNode('cell5', func_cell, num=5)
+    cell11 = FunctionNode('cell11', func_cell_zero, num=11)
+    cell12 = FunctionNode('cell12', func_cell_zero, num=12)
+    cell13 = FunctionNode('cell13', func_cell_zero, num=13)
+    cell14 = FunctionNode('cell14', func_cell_zero, num=14)
+    robot1 = VariableNode('robot1', domain=[1, 2, 3])
+    robot2 = VariableNode('robot2', domain=[1, 3, 4])
+    robot3 = VariableNode('robot3', domain=[2, 3, 5])
+    robot4 = VariableNode('robot4', domain=[3, 4, 5])
+
+    cell1.neighbours = [robot1, robot2]
+    cell2.neighbours = [robot1, robot3]
+    cell3.neighbours = [robot1, robot2, robot3, robot4]
+    cell4.neighbours = [robot2, robot4]
+    cell5.neighbours = [robot3, robot4]
+    cell11.neighbours = [robot1]
+    cell12.neighbours = [robot2]
+    cell13.neighbours = [robot3]
+    cell14.neighbours = [robot4]
+    robot1.neighbours = [cell1, cell2, cell3, cell11]
+    robot2.neighbours = [cell1, cell3, cell4, cell12]
+    robot3.neighbours = [cell2, cell3, cell5, cell13]
+    robot4.neighbours = [cell3, cell4, cell5, cell14]
+
+    return [cell1, cell2, cell3, cell4, cell5, cell11, cell12, cell13, cell14, robot1, robot2, robot3, robot4]
 
 
 def scenario_3_5():

@@ -12,11 +12,12 @@ def main():
     # scenario_func = scenario_3_6  # !
     # scenario_func = scenario_3_7  # !
     # scenario_func = scenario_3_20  # !
+    scenario_func = scenario_3_clika
     # scenario_func = scenario_3_20_1  # !
     # scenario_func = scenario_3_21  # !
     # scenario_func = scenario_3_21_1  # !
     # scenario_func = scenario_3_22  # !
-    scenario_func = scenario_4_1  # !
+    # scenario_func = scenario_4_1  # !
     # scenario_func = scenario_4_1_1
     # scenario_func = scenario_4_3  # !
     # scenario_func = scenario_4_6
@@ -24,6 +25,7 @@ def main():
     # scenario_func = scenario_4_9  # !
     # scenario_func = scenario_4_10  # !
     # scenario_func = scenario_4_20
+    scenario_func = scenario_4_21
     # scenario_func = scenario_4_16
     # scenario_func = scenario_4_17
 
